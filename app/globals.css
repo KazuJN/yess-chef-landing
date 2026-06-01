@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@theme {
+  --color-page: #131c2d;
+  --color-surface: #161e2d;
+  --color-accent: #ffef5f;
+  --color-accent-muted: #feed5e;
+  --color-on-accent: #131c2d;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-page);
+  color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page-background {
+  position: relative;
+  isolation: isolate;
+  background-color: var(--color-page);
+}
+
+/* Matches Paper layer `fixed-background-img` — opacity 0.1, tiled pattern */
+.page-background::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--color-page);
+  background-image: url("/images/background-pattern.webp");
+  background-repeat: repeat;
+  background-size: 640px auto;
+  background-position: center;
+  opacity: 0.22;
+  pointer-events: none;
+}
+
+@media (min-width: 1280px) {
+  .page-background::before {
+    background-size: 1280px auto;
+  }
+}
