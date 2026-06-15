@@ -1,17 +1,19 @@
-import { Button } from "@/components/ui/Button";
+import { assets } from "@/lib/assets";
+import Image from "next/image";
 
 export function SiteHeader() {
   return (
-    <header className="flex flex-wrap items-center gap-4 self-stretch">
-      <div className="min-w-0 flex-1 py-2">
-        <a href="#" className="text-2xl font-black leading-[30px] text-white hover:opacity-90">
-          Yess Chef
-        </a>
-      </div>
-      <nav className="flex flex-wrap items-center gap-4" aria-label="Primary">
-        <Button href="#reserve">Reserve a Table</Button>
-        <Button href="tel:+15551234567">Call Us</Button>
-      </nav>
+    <header className="flex w-full items-center justify-center self-stretch py-0">
+      <a href="#" className="relative block h-[106px] w-[147px] shrink-0 hover:opacity-90">
+        <Image
+          src={assets.illustrations.logo}
+          alt="Yess Chef"
+          fill
+          priority
+          sizes="147px"
+          className="object-contain object-center"
+        />
+      </a>
     </header>
   );
 }

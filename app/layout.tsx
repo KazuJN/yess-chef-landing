@@ -1,3 +1,6 @@
+import { LenisProvider } from "@/components/providers/LenisProvider";
+import { assets } from "@/lib/assets";
+import { fontVariables, montserrat } from "@/lib/fonts";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -11,7 +14,7 @@ export const metadata: Metadata = {
     title: "Yess Chef",
     description: "An experience like never before. Come dine with us.",
     type: "website",
-    images: [{ url: "/images/hero.jpg", width: 1200, height: 750, alt: "Yess Chef dining room" }],
+    images: [{ url: assets.images.hero, width: 1200, height: 750, alt: "Yess Chef dining room" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -26,9 +29,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const patternStyle = {
+    "--pattern-image": `url("${assets.illustrations.backgroundPattern}")`,
+  } as React.CSSProperties;
+
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" className={fontVariables} style={patternStyle}>
+      <body className={`${montserrat.className} antialiased`}>
+        <LenisProvider>{children}</LenisProvider>
+      </body>
     </html>
   );
 }

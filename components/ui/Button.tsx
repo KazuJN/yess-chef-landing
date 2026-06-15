@@ -1,8 +1,11 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes } from "react";
 
+type ButtonVariant = "primary" | "ghost";
+
 type ButtonBaseProps = {
   children: React.ReactNode;
   className?: string;
+  variant?: ButtonVariant;
 };
 
 type ButtonAsButton = ButtonBaseProps &
@@ -13,20 +16,33 @@ type ButtonAsLink = ButtonBaseProps &
 
 type ButtonProps = ButtonAsButton | ButtonAsLink;
 
-const styles =
-  "inline-flex items-center justify-center bg-accent px-4 py-4 text-base font-medium leading-5 text-on-accent transition-colors hover:bg-accent-muted focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
+const baseStyles =
+  "inline-flex items-center justify-center px-3 py-3 font-body text-label font-bold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 
-export function Button({ children, className = "", href, ...props }: ButtonProps) {
+const variants: Record<ButtonVariant, string> = {
+  primary: "bg-accent text-on-accent hover:bg-accent-muted",
+  ghost: "border border-accent bg-transparent text-accent hover:bg-accent/10",
+};
+
+export function Button({
+  children,
+  className = "",
+  variant = "primary",
+  href,
+  ...props
+}: ButtonProps) {
+  const styles = `${baseStyles} ${variants[variant]} ${className}`;
+
   if (href) {
     return (
-      <a href={href} className={`${styles} ${className}`} {...(props as AnchorHTMLAttributes<HTMLAnchorElement>)}>
+      <a href={href} className={styles} {...(props as AnchorHTMLAttributes<HTMLAnchorElement>)}>
         {children}
       </a>
     );
   }
 
   return (
-    <button type="button" className={`${styles} ${className}`} {...(props as ButtonHTMLAttributes<HTMLButtonElement>)}>
+    <button type="button" className={styles} {...(props as ButtonHTMLAttributes<HTMLButtonElement>)}>
       {children}
     </button>
   );
