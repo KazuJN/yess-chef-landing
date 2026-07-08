@@ -11,7 +11,7 @@ export const restaurantSchema = {
   address: {
     "@type": "PostalAddress",
     streetAddress:
-      "Pixel 2, Studio Apartments, Unit No.05, 4th Floor Raja Capital, Babboor Giddanna Rd, Ashwath Nagar, Sampangi Rama Nagara",
+      "Unit No.05, 4th Floor, Raja Capital, Pixel 2, Studio Apartments, Babboor Giddanna Rd, Ashwath Nagar, Sampangi Rama Nagara",
     addressLocality: "Bengaluru",
     addressRegion: "Karnataka",
     postalCode: "560027",
