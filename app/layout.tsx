@@ -1,11 +1,13 @@
 import { LenisProvider } from "@/components/providers/LenisProvider";
 import { assets } from "@/lib/assets";
+import { SITE_URL } from "@/lib/constants";
 import { fontVariables, montserrat } from "@/lib/fonts";
+import { restaurantSchema } from "@/lib/restaurantSchema";
 import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://yess-chef.example.com"),
+  metadataBase: new URL(SITE_URL),
   title: "Yess Chef | An experience like never before",
   description:
     "Come dine with us at Yess Chef. Reserve a table Wed–Sun, 7:00 PM–9:00 PM & 9:30 PM–11:30 PM.",
@@ -35,6 +37,12 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={fontVariables} style={patternStyle}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(restaurantSchema) }}
+        />
+      </head>
       <body className={`${montserrat.className} antialiased`}>
         <LenisProvider>{children}</LenisProvider>
       </body>

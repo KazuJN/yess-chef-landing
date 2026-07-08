@@ -1,3 +1,4 @@
+export const SITE_URL = "https://yess-chef-landing.vercel.app";
 export const RESERVE_URL = "https://bookings.airmenus.in/yesschef/order";
 export const PHONE_URL = "tel:+9187228189";
 export const PHONE_NUMBER = "9187228189";
